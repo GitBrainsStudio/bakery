@@ -1,0 +1,11 @@
+.bun-creator__form-mat-field
+{
+    width: 100%;
+}
+
+.bun-creator__form
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

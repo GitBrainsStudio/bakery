@@ -1,0 +1,64 @@
+<div class="bun-collection" *ngIf="buns; else skeleton">
+    <div class="bun-collection__top-row">
+        <h1 class="bun-collection__title">
+            Пекарня
+        </h1>
+        <button mat-button (click)="openBunCreatorBottomSheet();">Напечь рандомных булочек 🌭</button>
+    </div>
+    <div class="bun-collection__scrollable-wrapper">
+        <table mat-table [dataSource]="buns" *ngIf="buns" class="bun-collection__table">
+
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> Тип </th>
+                <td mat-cell *matCellDef="let bun"> {{ bun.type | bunTypePipe }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="bakingDate">
+                <th mat-header-cell *matHeaderCellDef> Дата выпечки </th>
+                <td mat-cell *matCellDef="let bun"> {{ bun.bakingDate | date: 'dd.MM.yyyy HH:mm:ss' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="saleDeadline">
+                <th mat-header-cell *matHeaderCellDef> Дедлайн продажи </th>
+                <td mat-cell *matCellDef="let bun"> {{ bun.saleDeadline | date: 'dd.MM.yyyy HH:mm:ss' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="hoursCountForSale">
+                <th mat-header-cell *matHeaderCellDef> Время жизни (ч) </th>
+                <td mat-cell *matCellDef="let bun"> {{ bun.hoursCountForSale }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="beginPrice">
+                <th mat-header-cell *matHeaderCellDef> Стартовая стоимость </th>
+                <td mat-cell *matCellDef="let bun"> {{ bun.beginPrice }} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="currentPrice">
+                <th mat-header-cell *matHeaderCellDef> Текущая стоимость </th>
+                <td mat-cell *matCellDef="let bun"> {{ bun.currentPrice }} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="timeToChangeCurrentPrice">
+                <th mat-header-cell *matHeaderCellDef> Стоимость изменится в  </th>
+                <td mat-cell *matCellDef="let bun"> {{ bun.timeToChangeCurrentPrice | date: 'dd.MM.yyyy HH:mm:ss' }} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="nextCurrentPrice">
+                <th mat-header-cell *matHeaderCellDef> Следующая стоимость </th>
+                <td mat-cell *matCellDef="let bun"> {{ bun.nextCurrentPrice }} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="bunsMatTableColumns"></tr>
+            <tr mat-row *matRowDef="let bun; columns: bunsMatTableColumns;" [ngClass]="{ 'bun-table-row--red' : bun.isOverdue }"></tr>
+        </table>
+    </div>
+</div>
+
+<ng-template #skeleton>
+    <div class="bun-collection-skeleton">
+        <div class="bun-collection-icon">
+            🌭
+        </div>
+        Пекарня загружается...
+    </div>
+</ng-template>

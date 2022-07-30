@@ -1,0 +1,13 @@
+<div class="bun-creator">
+    <form [formGroup]="form" (submit)="formSubmit();" class="bun-creator__form">
+        <mat-form-field appearance="outline" class="bun-creator__form-mat-field">
+            <mat-label>
+                Количество булочек
+            </mat-label>
+            <input matInput formControlName="count">
+        </mat-form-field>
+        <button mat-button>
+            Испечь 😋
+        </button>
+    </form>
+</div>

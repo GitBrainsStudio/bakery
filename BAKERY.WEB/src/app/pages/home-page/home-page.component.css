@@ -1,0 +1,12 @@
+.home-page__bun-collection
+{
+    padding: 50px;
+}
+
+.home-page
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
